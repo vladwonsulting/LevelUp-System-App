@@ -23,16 +23,12 @@ app.use(
 app.use(cookieParser())
 app.use(express.json());
 
-//sequelize
-//    .sync({ alter: true }) // DON't USE { force: true }
-//    .then(() => console.log("✅ DB synced"))
-//    .catch((err) => console.error("❌ Error syncing DB:", err));
-
 app.post("/user", getUser);
 app.post("/register", registerUser);
 app.post("/login", loginUser);
-app.post("/profile", userProfile);
-app.post("/token-validation", tokenValidation);
+
+//app.post("/profile", userProfile);
+//app.post("/token-validation", tokenValidation);
 
 app.listen(port, () => {
     console.log(`♻️  Server run on http://localhost:${port}`);

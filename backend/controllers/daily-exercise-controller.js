@@ -1,27 +1,25 @@
-// controllers/login-controller.js
+// controllers/daily-exercise-controller.js
 import DailyExercise from "../models/DailyExercise.js";
 import User from "../models/User.js"
 
-const loginController = async(data) => {
-/*     const { id, push_ups, sit_ups, squats, running } = data;
+const dailyExerciseController = async(data) => {
+    const { id, push_ups, sit_ups, squats, running } = data;
 
     const updateExercises = [
-        { name: 'push_ups', value: push_ups },
-        { name: 'sit_ups', value: sit_ups },
-        { name: 'squats', value: squats },
-        { name: 'running', value: running },
-    ]; */
-    const id = "e3141635-2ae4-43f7-902b-5373f2581e1d"
+        { name: 'push_ups', value: 0, display_name: 'Push ups' },
+        { name: 'sit_ups', value: 0, display_name: 'Sit ups' },
+        { name: 'squats', value: 0, display_name: 'Squats' },
+        { name: 'running', value: 0, display_name: 'Running' },
+    ];
 
     try {
         const existingUser = await User.findOne({ where: { id } });
-        console.log('existingUser: ', existingUser.createdAt);
         if (!existingUser) {
             res.status(404).json({ success: false, message: "User Not found" });
             return;
         }
 
-        //existingUser.daily_exercise = updateExercises
+        existingUser.daily_exercise = updateExercises
 
         await existingUser.save()
         return existingUser
@@ -31,6 +29,4 @@ const loginController = async(data) => {
     }
 };
 
-loginController()
-
-export default loginController;
+export default dailyExerciseController;

@@ -11,7 +11,6 @@ export const useAuthStore = defineStore('authStore',()=>{
     const { getUser, isAuthenticated } = useAuthState()
 
     const user = ref(getUser() || null)
-    
     const authenticated = ref(isAuthenticated() || false)
 
     const registerUser = async (user) => {
