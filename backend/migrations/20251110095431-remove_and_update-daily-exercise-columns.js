@@ -9,7 +9,6 @@ export default {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
-   
     await queryInterface.addColumn('daily_exercise', 'exercises',
         {
             type: Sequelize.JSON,

@@ -6,6 +6,7 @@ export const useAuthState = () => {
 
     const getUser = () => {
         const response = JSON.parse(localStorage.getItem('user'))
+        console.log('response: ', response.user.daily_exercise);
         return response?.user || {}
     }
 

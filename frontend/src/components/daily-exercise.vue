@@ -4,32 +4,33 @@
     </div>
     <div
         v-else
-        class="w-full h-96 flex-col justify-between items-center"
+        class="w-full h-96 text-3xl font-thin flex-col justify-between items-center"
     >
         <h1>Daily exercise</h1>
         <div
             v-for="exercise in dailyExercise"
-            class="flex items-center justify-between mb-2"
         >
-            <p>{{ exercise?.display_name }}</p>
+            <div class="flex items-center justify-between mb-2">
+                <h3>{{ exercise?.display_name }}</h3>
 
-            <div class="flex items-center justify-center">
-                {{ exercise?.value }} km
-                <div class="bg-red-300 flex flex-col text-center px-3 ml-3">
-                    <span
-                        @click="increeseCount(exercise?.name, exercise?.value)"
-                        class=""
-                    >
-                        ^
-                    </span>
-                    <span
-                        @click="decreeseCount(exercise?.name, exercise?.value)"
-                        class="rotate-180"
-                    >
-                        ^
-                    </span>
+                <div class="flex items-center justify-center">
+                    {{ exercise?.value }} km
+                    <div class=" flex flex-col text-center px-3 ml-3">
+                        <span
+                            @click="increeseCount(exercise?.name, exercise?.value)"
+                        >
+                            <ChevronUpIcon class="size-10"/>
+                        </span>
+                        <Divider />
+                        <span
+                            @click="decreeseCount(exercise?.name, exercise?.value)"
+                        >
+                            <ChevronDownIcon class="size-10"/>
+                        </span>
+                    </div>
                 </div>
             </div>
+            <Divider />
         </div>
     </div>
 </template>
@@ -39,6 +40,8 @@ import { computed, onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useExerciseStore } from "@/stores/exercise.store.js";
 import Loading from "../assets/icons/loading.vue";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/24/outline";
+import Divider from './divider.vue'
 
 const exerciseStore = useExerciseStore();
 
