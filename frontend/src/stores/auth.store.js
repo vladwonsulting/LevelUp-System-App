@@ -2,11 +2,11 @@ import { ref, watch } from "vue";
 import { defineStore } from "pinia";
 import { loginAPI } from "@/api/auth";
 import { useAuthState } from "@/composables/auth";
-import { useCloudflareTurnstile } from "@/stores/turnstile.js";
+import { useGoogleToken } from "@/stores/recaptcha.js";
 import { useRouter } from "vue-router";
 
 export const useAuthStore = defineStore('authStore',()=>{
-    const cloudflareTurnstile = useCloudflareTurnstile()
+    const googleToken = useGoogleToken()
     const router = useRouter()
     const { getUser, isAuthenticated } = useAuthState()
 
@@ -14,7 +14,7 @@ export const useAuthStore = defineStore('authStore',()=>{
     const authenticated = ref(isAuthenticated() || false)
 
     const registerUser = async (user) => {
-        const token = await cloudflareTurnstile.getTurnstileToken();
+        const token = await googleToken.getToken();
         const { email, password } = user
 
         const response = await loginAPI({ email, password, token });
@@ -23,10 +23,12 @@ export const useAuthStore = defineStore('authStore',()=>{
     }
 
     const loginUser = async (data) => {
-        const token = await cloudflareTurnstile.getTurnstileToken();
+        const token = await googleToken.getToken();
+
         const { email, password } = data
 
         const response = await loginAPI({ email, password, token });
+
         if (response.success) {
             authenticated.value = true
             user.value = response?.user

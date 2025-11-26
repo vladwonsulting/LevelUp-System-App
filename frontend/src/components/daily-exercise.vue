@@ -4,12 +4,12 @@
     </div>
     <div
         v-else
-        class="w-full h-96 flex-col justify-between items-center bg-light-gray"
+        class="w-full h-96 flex-col justify-between items-center"
     >
         <h1>Daily exercise</h1>
         <div
             v-for="exercise in dailyExercise"
-            class="flex items-center justify-between bg-amber-500 mb-2"
+            class="flex items-center justify-between mb-2"
         >
             <p>{{ exercise?.display_name }}</p>
 

@@ -9,10 +9,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-    const authenticated = isAuthenticated();
+    const authenticated = isAuthenticated()
 
     if ( authenticated && to.name === 'login') return { name: "home" }
-    if (!authenticated && to.meta.requiresAuth === true) return { name: "login" }
+    if ( !authenticated && to.meta.requiresAuth === true ) return { name: "auth-page" }
 });
 
 export default router;

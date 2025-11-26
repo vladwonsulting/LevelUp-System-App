@@ -11,6 +11,7 @@ const registerAPI = async (user) => {
 
 const loginAPI = async (user) => {
     const response = await axios.post(`${api}/login`, user)
+    console.log('response: ', response);
     if (response?.data?.success) { 
         setUser(response?.data)
     }

@@ -1,26 +1,25 @@
-// Turnstile token validation
-const secret = process.env.TURNSTILE_SECRET_KEY;
+const secretKey = process.env.GOOGLE_SECRET_KEY;
 
 const authTokenValidation = async (token) => {
     if (!token) {
-        return res
-            .status(400)
-            .json({ success: false, message: "No token provided" });
+        return { success: false, message: "No token provided" };
     }
 
-    const tokenValidated = await fetch(
-        "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    const response = await fetch(
+        "https://www.google.com/recaptcha/api/siteverify",
         {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
             },
-            body: `secret=${secret}&response=${token}`,
+            body: `secret=${secretKey}&response=${token}`,
         }
     );
 
-    const data = await tokenValidated.json();
+    const data = await response.json();
+    console.log("tokenValidated: ", data);
 
     return data;
 };
+
 export default authTokenValidation;

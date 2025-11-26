@@ -1,5 +1,6 @@
 import Home from '@/pages/home.vue'
 import LoginPage from '@/pages/auth/login.vue'
+import AuthPage from '@/pages/auth/auth-page.vue'
 import RegisterPage from '@/pages/auth/register.vue'
 
 const routes = [
@@ -10,17 +11,11 @@ const routes = [
         meta: { requiresAuth: true }
     },
     { 
-        path: '/login', 
-        component: LoginPage,
-        name: 'login',
+        path: '/auth-page', 
+        component: AuthPage,
+        name: 'auth-page',
         meta: { requiresAuth: false }
-    },
-    {
-        path: '/register', 
-        component: RegisterPage,
-        name: 'register',
-        meta: { requiresAuth: false }
-    },
+    }
 ]
 
 export default routes

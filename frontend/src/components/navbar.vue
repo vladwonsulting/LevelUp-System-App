@@ -1,8 +1,8 @@
 
 <template>
-    <div class="w-full fixed bg-light-gray py-3 px-20 flex justify-between">
+    <div class="w-full fixed bg-stone-950 py-3 px-20 flex justify-between">
         <Logo 
-            class="size-8"
+            class="size-8 invert"
         />
         <div 
             v-if="authenticated" 
@@ -18,21 +18,6 @@
             >
                 <ArrowRightStartOnRectangleIcon class="size-6 cursor-pointer"/>
             </button>
-        </div>
-        <div 
-            v-else 
-            class="font-thin text-2xl flex items-center gap-10"
-        >
-            <router-link 
-                :to="{ name: 'login' }"
-            >
-                Login
-            </router-link>
-            <router-link 
-                :to="{ name: 'register'}"
-            >
-                Register
-            </router-link>
         </div>
     </div>
 </template>
