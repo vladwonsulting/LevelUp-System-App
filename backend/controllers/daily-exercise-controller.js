@@ -2,31 +2,56 @@
 import DailyExercise from "../models/DailyExercise.js";
 import User from "../models/User.js"
 
-const dailyExerciseController = async(data) => {
-    const { id, push_ups, sit_ups, squats, running } = data;
-
-    const updateExercises = [
-        { name: 'push_ups', value: 0, display_name: 'Push ups' },
-        { name: 'sit_ups', value: 0, display_name: 'Sit ups' },
-        { name: 'squats', value: 0, display_name: 'Squats' },
-        { name: 'running', value: 0, display_name: 'Running' },
-    ];
-
+export const getExercises = async(req, res) => {
     try {
-        const existingUser = await User.findOne({ where: { id } });
-        if (!existingUser) {
-            res.status(404).json({ success: false, message: "User Not found" });
+        const exercises = await DailyExercise.findAll();
+        if (!exercises) {
+            res.status(404).json({ success: false, message: "Exercises not found" });
             return;
         }
 
-        existingUser.daily_exercise = updateExercises
-
-        await existingUser.save()
-        return existingUser
+        return exercises
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: "Server error" });
     }
 };
 
-export default dailyExerciseController;
+export const postExercises = async(data) => {
+    console.log('data: ', data);
+    const { user_id, exercises } = data
+    try {
+        const addDailyExercises = await DailyExercise.create({
+            user_id,
+            daily_exercise: exercises
+        });
+        
+        if (!addDailyExercises) {
+            res.status(404).json({ success: false, message: "Can't add new exercises" });
+            return;
+        }
+
+        await addDailyExercises.save()
+        return addDailyExercises
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+};
+
+export const deleteExercise = async(id) => {
+    try {
+        return await DailyExercise.destroy({ where: { id} });
+    } catch (err) {
+        throw err
+    }
+};
+
+export const deleteAllExercises = async(id) => {
+    try {
+        return await DailyExercise.destroy({ truncate: true });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+};

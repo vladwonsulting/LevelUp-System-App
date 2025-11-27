@@ -1,6 +1,6 @@
 import { ref, watch } from "vue";
 import { defineStore } from "pinia";
-import { loginAPI } from "@/api/auth";
+import { loginAPI } from "@/api/auth-api";
 import { useAuthState } from "@/composables/auth";
 import { useGoogleToken } from "@/stores/recaptcha.js";
 import { useRouter } from "vue-router";

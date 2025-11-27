@@ -10,17 +10,17 @@ const updateUsersDailyExercise = async () => {
     const users = await User.findAll();
 
     for (const user of users) {
-      const oldExercise = user.daily_exercise;
+        const oldExercise = user.daily_exercise;
 
-      const newExercise = [
-        { name: 'push_ups', value: oldExercise.push_ups || 0, display_name: 'Push ups'  },
-        { name: 'sit_ups', value: oldExercise.sit_ups || 0, display_name: 'Sit ups'  },
-        { name: 'squats', value: oldExercise.squats || 0, display_name: 'Squats'  },
-        { name: 'running', value: oldExercise.running || 0, display_name: 'Running'  },
-      ];
+        const newExercise = [
+            { name: 'push_ups', value: oldExercise.push_ups || 0, display_name: 'Push ups'  },
+            { name: 'sit_ups', value: oldExercise.sit_ups || 0, display_name: 'Sit ups'  },
+            { name: 'squats', value: oldExercise.squats || 0, display_name: 'Squats'  },
+            { name: 'running', value: oldExercise.running || 0, display_name: 'Running'  },
+        ];
 
-      user.daily_exercise = newExercise;
-      await user.save();
+        user.daily_exercise = newExercise;
+        await user.save();
     }
 
     console.log('All users updated!');

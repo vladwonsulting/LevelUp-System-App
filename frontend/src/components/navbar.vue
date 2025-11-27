@@ -13,6 +13,11 @@
             >
                 Home
             </router-link>
+            <router-link 
+                :to="{ name: 'progress' }"
+            >
+                Progress
+            </router-link>
             <button
                 @click="logout"
             >

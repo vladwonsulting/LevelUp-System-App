@@ -2,12 +2,19 @@ import Home from '@/pages/home.vue'
 import LoginPage from '@/pages/auth/login.vue'
 import AuthPage from '@/pages/auth/auth-page.vue'
 import RegisterPage from '@/pages/auth/register.vue'
+import Progress from '@/pages/progress.vue'
 
 const routes = [
     {
         path: '/', 
         component: Home,
         name: 'home',
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/progress', 
+        component: Progress,
+        name: 'progress',
         meta: { requiresAuth: true }
     },
     { 

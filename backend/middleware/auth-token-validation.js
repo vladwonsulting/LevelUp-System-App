@@ -17,7 +17,6 @@ const authTokenValidation = async (token) => {
     );
 
     const data = await response.json();
-    console.log("tokenValidated: ", data);
 
     return data;
 };

@@ -64,7 +64,7 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import { loginAPI, registerAPI } from "@/api/auth";
+import { loginAPI, registerAPI } from "@/api/auth-api";
 import { regularInputs } from "@/assets/inputs";
 import { useRouter } from "vue-router";
 
