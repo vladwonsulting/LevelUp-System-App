@@ -28,16 +28,16 @@ router.post("/login", async (req, res) => {
 
     try {
         const existingUser = await loginController({ email, password })
-        //const tokenValidated = await authTokenValidation(token)
+        const tokenValidated = await authTokenValidation(token)
 
-        //if (!tokenValidated.success) {
-        //    return res.status(403).json({
-        //        success: false,
-        //        message: "Turnstile validation failed",
-        //    });
-        //}
+        if (!tokenValidated.success) {
+            return res.status(403).json({
+                success: false,
+                message: "Turnstile validation failed",
+            });
+        }
 
-        const successfulLogin = existingUser //&& tokenValidated.success;
+        const successfulLogin = existingUser && tokenValidated.success;
 
         if (successfulLogin) {
             res.status(200).json({ 

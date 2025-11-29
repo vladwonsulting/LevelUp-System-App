@@ -1,6 +1,11 @@
 const secretKey = process.env.GOOGLE_SECRET_KEY;
+const isRecaptchaEnabled = process.env.GOOGLE_SECRET === 'true';
 
 const authTokenValidation = async (token) => {
+    if (!isRecaptchaEnabled) {
+        return { success: true, message: "Recaptcha is Disabled" };
+    }
+
     if (!token) {
         return { success: false, message: "No token provided" };
     }

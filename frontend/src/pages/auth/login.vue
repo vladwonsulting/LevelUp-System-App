@@ -50,7 +50,9 @@ import { useAuthStore } from "@/stores/auth.store";
 import Logo from "@/assets/icons/logo.vue";
 import LoadingIcon from '@/assets/icons/loading.vue'
 import GoogleReCaptcha from '@/library/google-recaptcha.vue'
+import { useNotificationStore } from "@/stores/notification.store";
 
+const notificationStore = useNotificationStore();
 const authStore = useAuthStore();
 const { something, number, boolean, name, user, surname } = defineProps(['something', 'number', 'boolean', 'name', 'user', 'surname']);
 
@@ -62,11 +64,13 @@ const test = ref(false);
 const loginHandler = async () => {
     loading.value = true;
     try{
-        await authStore.loginUser({
+        const response = await authStore.loginUser({
             email: email.value,
             password: password.value
         })
+        if(response.success) notificationStore.notify("Login was successful","success")
     } catch (err) {
+        notificationStore.notify( err.message, "error")
         throw err
     } finally {
         loading.value = false

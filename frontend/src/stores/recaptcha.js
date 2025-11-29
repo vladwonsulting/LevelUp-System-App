@@ -3,6 +3,8 @@ import { ref, watch } from "vue";
 
 export const useGoogleToken = defineStore( "cloudflare-turnstile", () => {
     const siteKey = import.meta.env.VITE_GOOGLE_SITE_KEY;
+    const isRecaptchaEnabled = import.meta.env.VITE_GOOGLE_RECAPTCHA_ENABLED === 'true'
+    console.log('isRecaptchaEnabled: ', isRecaptchaEnabled);
     const reCaptchaToken = ref(null);
 
     const insertWidget = async () => {
@@ -15,7 +17,7 @@ export const useGoogleToken = defineStore( "cloudflare-turnstile", () => {
     };
 
     const getToken = async () => {
-
+        if(!isRecaptchaEnabled) return
         // Promise to ensure reCaptchaToken gets values
         if (reCaptchaToken.value == null) {
             const response = await new Promise((resolve) => {
