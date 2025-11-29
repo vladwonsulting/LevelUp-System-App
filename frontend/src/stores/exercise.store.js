@@ -14,7 +14,6 @@ export const useExerciseStore = defineStore( "exercise-store", () => {
         try{
             const response = await getExercisesAPI()
             workoutHistory.value = response?.exercises
-            console.log('workoutHistory.value: ', workoutHistory.value);
             return workoutHistory.value
         } catch (err) {
             throw err

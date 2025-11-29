@@ -1,6 +1,6 @@
 
 <template>
-    <div class="w-full fixed bg-stone-950 py-3 px-20 flex justify-between">
+    <div class="w-full fixed py-3 px-20 flex justify-between">
         <Logo 
             class="size-8 invert"
         />
@@ -36,6 +36,7 @@ import { storeToRefs } from "pinia";
 
 const authStore = useAuthStore();
 const { authenticated } = storeToRefs(authStore)
+console.log('#2');
 
 const logout = async () => {
     authStore.logoutUser()

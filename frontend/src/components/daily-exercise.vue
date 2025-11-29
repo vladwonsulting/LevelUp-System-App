@@ -18,13 +18,13 @@
                     {{ exercise?.unit_type }}
                     <div class=" flex flex-col text-center px-3 ml-3 cursor-pointer">
                         <span
-                            @click="increeseCount(exercise?.name, exercise?.value)"
+                            @click="() => increeseCount(exercise?.name)"
                         >
                             <ChevronUpIcon class="size-10"/>
                         </span>
                         <Divider />
                         <span
-                            @click="decreeseCount(exercise?.name, exercise?.value)"
+                            @click="() => decreeseCount(exercise?.name)"
                         >
                             <ChevronDownIcon class="size-10"/>
                         </span>
@@ -51,13 +51,15 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 
 import { useExerciseStore } from "@/stores/exercise.store.js";
+import { DAILY_EXERCISE } from "@/stores/store";
+
+import Divider from './divider.vue'
+
 import Loading from "../assets/icons/loading.vue";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/24/outline";
-import Divider from './divider.vue'
-import { DAILY_EXERCISE } from "@/stores/store";
 
 const exerciseStore = useExerciseStore();
 const dailyExercise = ref(DAILY_EXERCISE)
@@ -96,6 +98,8 @@ const submitExercises = async() => {
 const deleteAllExercises = async() => {
     await exerciseStore.deleteDailyExercise()
 };
+
+console.log('daily');
 
 onMounted(() => {
     handleFetchExercises();

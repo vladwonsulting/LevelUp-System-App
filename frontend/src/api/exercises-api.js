@@ -4,7 +4,6 @@ const api = import.meta.env.VITE_API_URL || '/api'
 
 const getExercisesAPI = async () => {
     const response = await axios.get(`${api}/get-exercises`)
-    console.log('response?.data: ', response?.data?.exercises);
     return response?.data
 }
 
