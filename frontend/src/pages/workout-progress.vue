@@ -8,22 +8,12 @@
                 >
                     <ChevronLeftIcon class="size-10"/>
                 </span>
-                <Transition
-                    enter-active-class="transition-all duration-200 "
-                    enter-from-class="opacity-0"
-                    enter-to-class="opacity-100"
-
-                    leave-active-class="transition-all duration-200 "
-                    leave-from-class="opacity-100"
-                    leave-to-class="opacity-0"
-
-                    mode="out-in"
-                >
+                <FadeEffect>
                     <WorkoutDetailsCard
                         v-model="workoutDetails"
                         :key="currentWorkout"
                     />
-                </Transition>
+                </FadeEffect>
                 <span
                     @click="moveForwardHandler"
                     class="cursor-pointer"
@@ -42,6 +32,7 @@ import { useExerciseStore } from "@/stores/exercise.store.js";
 import WorkoutDetailsCard from '@/components/workout-details-card.vue'
 import { DAILY_EXERCISE } from "@/stores/store";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/vue/24/outline";
+import FadeEffect from '../effects/fade-effect.vue'
 
 
 const exerciseStore = useExerciseStore();
