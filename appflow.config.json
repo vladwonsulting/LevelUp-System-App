@@ -1,6 +1,6 @@
 {
   "name": "levelup",
-  "type": "ionic-angular",
+  "type": "ionic-vue",
   "appId": "maincaracters.org",
   "webDir": "frontend/dist",
   "cordova": {},
