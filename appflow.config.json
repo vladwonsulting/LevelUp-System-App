@@ -1,13 +1,12 @@
 {
-    "levelup":
-    [
+    "apps": [
         {
-            "appId": "123e3b77",
-            "root": "levelup",
-            "dependencyInstallCommand": "cd frontend && npm install",
-            "webBuildCommand": "cd frontend && npm run build",
-            "iosPath": "frontend/ios",
-            "androidPath": "frontend/android"
+            "appId": "123e3b77", 
+            "root": "frontend",
+            "dependencyInstallCommand": "npm install",
+            "webBuildCommand": "npm run build",
+            "androidPath": "frontend/android",
+            "iosPath": "frontend/ios"
         }
     ]
 }
