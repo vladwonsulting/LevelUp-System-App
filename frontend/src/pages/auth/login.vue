@@ -53,9 +53,6 @@ import GoogleReCaptcha from '@/library/google-recaptcha.vue'
 
 const authStore = useAuthStore();
 const { something, number, boolean, name, user, surname } = defineProps(['something', 'number', 'boolean', 'name', 'user', 'surname']);
-console.log('surname: ', surname);
-console.log('user: ', user);
-console.log('name: ', name);
 
 const email = ref("vurado@gmail.com");
 const password = ref("123456Aa.");

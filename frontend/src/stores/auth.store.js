@@ -26,6 +26,10 @@ export const useAuthStore = defineStore('authStore',()=>{
         const token = await googleToken.getToken();
 
         const { email, password } = data
+        alert(`
+            email:${email}
+            token:${token}
+            `)
 
         const response = await loginAPI({ email, password, token });
 
@@ -39,7 +43,7 @@ export const useAuthStore = defineStore('authStore',()=>{
 
     const logoutUser = () => {
         localStorage.removeItem('user')
-        router.push({name: 'login'})
+        router.push({name: 'auth-page'})
 
     }
 
