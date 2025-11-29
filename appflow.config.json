@@ -2,5 +2,14 @@
   "name": "levelup",
   "type": "ionic-angular",
   "appId": "maincaracters.org",
-  "webDir": "frontend"
+  "webDir": "frontend",
+  "cordova": {},
+  "capacitor": {
+    "android": {
+      "path": "frontend/android"
+    },
+    "ios": {
+      "path": "frontend/ios"
+    }
+  }
 }
